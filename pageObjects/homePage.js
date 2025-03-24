@@ -1,10 +1,8 @@
-import Page from './base.js';
-import Login from './login.js'
+import Base from './base.js';
+import Login from './login.js';
 import {$} from '@wdio/globals';
-//sub page object for logging in
 
-class HomePage extends Page {
-
+class HomePage extends Base {
     get hamburgerButton() {
         return $('#react-burger-menu-btn');
     }
@@ -21,16 +19,20 @@ class HomePage extends Page {
         return $('#reset_sidebar_link');
     }
     get xButton() {
-        return $('#react-burger-cross-btn')
+        return $('#react-burger-cross-btn');
     }
 
     get cartButton() {
-        return $('[data-test="shopping-cart-link"]')
+        return $('[data-test="shopping-cart-link"]');
     }
 
     get addItemButton() {
-        return $('#add-to-cart-sauce-labs-backpack')
+        return $('(//button[contains(@id, "add-to-cart")])[1]');
     } 
+
+    get productPageDiv() {
+        return $('#inventory_item_container');
+    }
 
     async doTheHamburger(endpoint) {
         await this.hamburgerButton.click();
@@ -52,4 +54,4 @@ class HomePage extends Page {
     }
 }
 
-export default new HomePage()
+export default new HomePage();

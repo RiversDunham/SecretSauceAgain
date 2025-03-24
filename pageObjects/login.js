@@ -1,13 +1,12 @@
-import Page from './base.js';
+import Base from './base.js';
 import {$} from '@wdio/globals';
 //sub page object for logging in
 
-class Login extends Page {
+class Login extends Base {
 
     get inputUsername() {
         return $('#user-name');
     }
-    
     get inputPassword() {
         return $('#password');
     }
@@ -16,12 +15,13 @@ class Login extends Page {
         return $('#login-button');
     }
 
-    async enterInfo(username, password) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
+    get loginError() {
+        return $('//h3[contains(text(), "You can only access")]')
     }
 
-    async clickLogin() {
+    async login(username, password) {
+        await this.inputUsername.setValue(username);
+        await this.inputPassword.setValue(password);
         await this.loginButton.click();
     }
 
